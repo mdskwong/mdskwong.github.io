@@ -1,0 +1,5 @@
+---
+title: "About"
+---
+
+Teem, a Computer Science graduate with experience in IT support, system administration, and data analysis. My career goal is to leverage data-driven approaches to solve complex challenges and facilitate decision-making processes.
