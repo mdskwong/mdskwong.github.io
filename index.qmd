@@ -1,5 +1,8 @@
 ---
-title: "Teem KWONG's website"
+title: "myblog"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
 ---
-
-Coming soon...

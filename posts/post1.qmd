@@ -1,0 +1,134 @@
+---
+title: "How Does Chain-of-Thought (CoT) Prompting Influence the Outputs of Large Language Models (LLMs)?"
+author: "Teem KWONG"
+date: "2026-01-17"
+---
+
+## Introduction: The "Black Box" Problem
+
+In the early days of Large Language Model (LLM) adoption, users often treated models like GPT-3 or early Gemini versions as sophisticated search engines. We provided a query, and the model returned a result. This works perfectly for retrieving facts: "What is the boiling point of nitrogen?" results in a quick, accurate answer.
+
+However, as we moved toward more complex tasks, like solving word problems or planning a multi-step schedule, the "Black Box" nature of LLMs became a liability. Imagine asking the model: *"If I buy 3 apples for \$2 each and a \$10 cake, how much change do I get from \$20?"* A model might confidently blurt out **"\$8"** because it recognized the numbers with dollar sign but "hallucinated" a shortcut, completely forgetting 3 apples. Without seeing the steps, you have no idea where the math went wrong. It either gives you the right destination or leaves you stranded in the wrong place with no map in between.
+
+The breakthrough came when researchers realized that LLMs, much like human students, perform significantly better when they are forced to "show their work." This technique, known as **Chain-of-Thought (CoT) Prompting**, is not just a trick of language, it is a fundamental shift in how we interact with neural networks.
+
+------------------------------------------------------------------------
+
+## What is Chain-of-Thought (CoT) Prompting?
+
+Chain-of-Thought prompting is a technique where we ask an AI model to explain its reasoning before giving the answer. Instead of jumping to conclusions, the model unfolds its “thought process” in natural language.
+
+### A Comparative Example
+
+Consider the following logic puzzle: \> *Question: Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?*
+
+**Standard Prompting Output:** \> *Answer: 7.* (Incorrect)
+
+**CoT Prompting Output:** \>
+
+*Step 1: Roger started with 5 balls. 2 cans of 3 tennis balls each is 6 tennis balls.*
+
+*Step 2: 5 + 6 = 11.*
+
+*Step 3: The answer is 11.*
+
+*Answer: 11.* (Incorrect)
+
+In this case, the model followed the logical flow. By generating the text for Step 1, the model created a "new" context for Step 2. It no longer had to remember *2 cans of 3 tennis balls*; it only had to focus on the result "6" that was now physically present in its recent memory.
+
+![](img/q3_1.png)
+
+Image Source: [Wei et al. (2022)](https://arxiv.org/abs/2201.11903)
+
+------------------------------------------------------------------------
+
+## The Technical "Why": Building Logic Brick by Brick
+
+To understand why CoT works, we have to look under the hood of how Large Language Models process information. LLMs predict the next word (or "token") based on everything that came before it. In a standard prompt, the model tries to leap from the question to the final answer in one go. This is where logic often breaks down.
+
+### 1. Logic Decomposition: The LEGO Principle
+
+CoT prompting works because it encourages logic decomposition—breaking a massive, intimidating problem into smaller, manageable parts. Think of it like building a complex LEGO castle. You wouldn't try to manifest the entire castle at once; you’d follow the manual to build the baseplate, then the walls, then the towers.
+
+This "divide and conquer" approach is essential for solving long word problems, planning detailed essays, or diagnosing software bugs. By constructing these smaller "logical blocks" first, the model can eventually snap them all together to form a complete, sturdy structure.
+
+### 2. Externalizing "Working Memory"
+
+In a standard prompt, the model has to perform all its "thinking" inside its hidden layers before it types a single letter. This is like trying to solve a 10-digit multiplication problem entirely in your head without a piece of paper. You’re likely to lose track of a carry-over digit and fail.
+
+When a model writes down a reasoning step, it’s like placing a LEGO brick firmly into the baseplate. Once that brick is placed, the model can "see" it. It no longer has to use its internal "mental energy" to remember that specific sub-step because it is now part of the written text. This process acts as external working memory, allowing the model to "read" its own previous logic to inform what comes next.
+
+### 3. Error Correction: Catching the "Misplaced Brick"
+
+One of the greatest strengths of the LEGO approach is error locality. If you are building a LEGO tower and you put a 2x4 brick where a 2x2 brick should be, you will notice the misalignment immediately as you try to add the next layer.
+
+Similarly, when an LLM explains its intermediate reasoning, it is much easier to catch mistakes early. If the model realizes in Step 2 that its math doesn't add up, the "physical" presence of that error in the text window often nudges the model to self-correct before it reaches the final answer. This leads to far more consistent and accurate results than a single "black box" guess.
+
+------------------------------------------------------------------------
+
+## Variations of the CoT Pattern
+
+As the field of Prompt Engineering has matured, three primary variations of CoT have emerged as industry standards.
+
+### 1. Zero-Shot CoT: The "Magic" Instruction
+
+Here, you simply add a phrase like "Let’s think step by step" to a question. The model interprets this as an instruction to explain its reasoning, i.e. no examples needed.
+
+![](img/q3_2.png)
+
+Image Source: [Kojima et al. (2022)](https://arxiv.org/abs/2205.11916)
+
+### 2. Few-Shot CoT: Exemplar-Based Reasoning
+
+This version provides a few examples of problems and their worked-out solutions before the new question. It’s like giving a student a few solved examples before letting them try on their own.
+
+### 3. Self-Consistency: Voting for Accuracy
+
+Self-consistency: Instead of relying on a single chain of thought, the model generates multiple reasoning paths, then picks the most consistent conclusion. This reduces random errors and produces more reliable results.
+
+------------------------------------------------------------------------
+
+## Practical Case Study: Automating Data Cleaning
+
+Let’s look at a real-world Data Science application. Imagine you have a messy dataset and you need an LLM to write a Python script to clean it.
+
+**Standard Prompt:** \> "Write a Python script to clean this CSV where 'Date' is in various formats and 'Income' has currency symbols."
+
+The model might write a quick script that misses certain edge cases, like "€" versus "\$".
+
+**CoT Prompt:** \> "Let's approach this data cleaning task systematically. First, identify all possible date formats. Second, determine the best regex for stripping currency symbols. Third, handle missing values. Finally, write the script."
+
+By following this chain, the model is much more likely to produce robust code that accounts for the nuances of the data, as it has "thought through" the edge cases before it even began writing the first line of `import pandas as pd`.
+
+------------------------------------------------------------------------
+
+## Advantages, Limitations, and Ethical Considerations
+
+### The Benefits
+
+1.  **Enhanced Logical Transparency:** CoT transforms the AI from a "black box" into an open book. Especially in complex fields like medical diagnostics or financial forecasting, it provides a clear reasoning chain of logic. Instead of just receiving a final number or statement, you can see exactly how the AI arrived at its conclusion.
+2.  **Precision in Complex Reasoning:** This approach is most powerful when tackling mathematical problems, strategic planning, or multi-step logic. By breaking down the process, the model stays "on track" during long-form generation, ensuring that the final output is grounded in a consistent, step-by-step methodology.
+3.  **Educational Insight:** Beyond simply providing an answer, CoT serves as an instructional tool. It teaches the user the underlying methodology, showing the "how" and "why" behind a solution. This makes it an invaluable resource for learning how to approach similar strategic or logical challenges in the future.
+
+### The Trade-offs
+
+1.  **Increased Resource Overhead:** The primary cost of detailed reasoning is a higher token count. Because CoT generates full reasoning chains rather than just a final result, it consumes significantly more computational power.
+2.  **Latency & Speed Constraints:** In environments where "speed is king," CoT can be a bottleneck. Generating several paragraphs of logic takes more time than a concise one-sentence answer. This makes it unsuitable for real-time chatbots or simple queries, like weather updates or basic definitions, where the extra "thinking time" creates unnecessary delays for the user.
+
+------------------------------------------------------------------------
+
+## Conclusion: The Path Forward
+
+Chain-of-Thought (CoT) prompting marks a fundamental shift in AI, evolving Large Language Models from simple "answer machines" into sophisticated reasoning engines. By making the model's logic transparent and interpretable, CoT builds the necessary trust for AI integration in professional and academic environments.
+
+For data scientists and enthusiasts alike, mastering CoT is essential. It serves as the bridge between superficial fluency and true logical depth, ensuring that the AI of the future is not only more accurate but also more transparent and reliable.
+
+------------------------------------------------------------------------
+
+### References
+
+Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., Chi, E. H., Le, Q. V., & Zhou, D. (2022). [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903). *arXiv preprint arXiv:2201.11903*.
+
+Kojima, T., Gu, S. S., Reid, M., Matsuo, Y., & Iwasawa, Y. (2022). [Large language models are zero-shot reasoners](https://doi.org/10.48550/arXiv.2205.11916). *arXiv preprint arXiv:2205.11916*
+
+Chain-of-Thought (CoT) Prompting. (n.d.). *Prompting Guide*. Retrieved January 7, 2026, from <https://www.promptingguide.ai/techniques/cot/>
