@@ -102,7 +102,7 @@ By following this chain, the model is much more likely to produce robust code th
 
 ------------------------------------------------------------------------
 
-## Advantages, Limitations, and Ethical Considerations
+## Advantages and Limitations
 
 ### The Benefits
 

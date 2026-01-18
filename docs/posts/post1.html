@@ -134,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#self-consistency-voting-for-accuracy" id="toc-self-consistency-voting-for-accuracy" class="nav-link" data-scroll-target="#self-consistency-voting-for-accuracy">3. Self-Consistency: Voting for Accuracy</a></li>
   </ul></li>
   <li><a href="#practical-case-study-automating-data-cleaning" id="toc-practical-case-study-automating-data-cleaning" class="nav-link" data-scroll-target="#practical-case-study-automating-data-cleaning">Practical Case Study: Automating Data Cleaning</a></li>
-  <li><a href="#advantages-limitations-and-ethical-considerations" id="toc-advantages-limitations-and-ethical-considerations" class="nav-link" data-scroll-target="#advantages-limitations-and-ethical-considerations">Advantages, Limitations, and Ethical Considerations</a>
+  <li><a href="#advantages-and-limitations" id="toc-advantages-and-limitations" class="nav-link" data-scroll-target="#advantages-and-limitations">Advantages and Limitations</a>
   <ul class="collapse">
   <li><a href="#the-benefits" id="toc-the-benefits" class="nav-link" data-scroll-target="#the-benefits">The Benefits</a></li>
   <li><a href="#the-trade-offs" id="toc-the-trade-offs" class="nav-link" data-scroll-target="#the-trade-offs">The Trade-offs</a></li>
@@ -253,8 +253,8 @@ ul.task-list li input[type="checkbox"] {
 <p>By following this chain, the model is much more likely to produce robust code that accounts for the nuances of the data, as it has “thought through” the edge cases before it even began writing the first line of <code>import pandas as pd</code>.</p>
 <hr>
 </section>
-<section id="advantages-limitations-and-ethical-considerations" class="level2">
-<h2 class="anchored" data-anchor-id="advantages-limitations-and-ethical-considerations">Advantages, Limitations, and Ethical Considerations</h2>
+<section id="advantages-and-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="advantages-and-limitations">Advantages and Limitations</h2>
 <section id="the-benefits" class="level3">
 <h3 class="anchored" data-anchor-id="the-benefits">The Benefits</h3>
 <ol type="1">
@@ -361,7 +361,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/mdskwong\.github\.io\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
