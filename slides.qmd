@@ -1,0 +1,128 @@
+---
+title: "Breaking the Black Box"
+subtitle: "The Power of Chain-of-Thought (CoT) Prompting"
+author: "Teem KWONG"
+format: 
+  revealjs:
+    theme: white
+    transition: slide
+    slide-number: true
+    self-contained: true
+---
+
+## The "Black Box" Problem
+### Why standard LLMs fail complex tasks
+
+* **The Search Engine Fallacy:** Early users treated LLMs like Google.
+* **The Logic Gap:** Models are great at facts, but struggle with multi-step reasoning.
+* **The "Hallucination" Shortcut:** * *Question:* 3 apples (\$2/ea) + \$10 cake. Change from \$20?
+    * *Black Box Answer:* "$8" (Model missed the multiplier).
+* **The Risk:** You get a destination with no map.
+
+---
+
+## What is Chain-of-Thought (CoT)?
+
+> "A technique where we ask an AI model to explain its reasoning before giving the answer."
+
+### The Core Shift:
+* Unfolding the "thought process" in natural language.
+* Shifting from **Result-Oriented** to **Process-Oriented** interaction.
+
+---
+
+## A Comparative Example
+
+**The Puzzle:** Roger has 5 balls. He buys 2 cans (3 balls each). Total?
+
+| Standard Prompting | Chain-of-Thought Prompting |
+| :--- | :--- |
+| **Output:** "7" | **Step 1:** 5 balls + (2 cans × 3) = 6 balls. |
+| **Result:** Incorrect | **Step 2:** 5 + 6 = 11. |
+| | **Answer:** 11 (Correct) |
+
+**Why?** The model uses its own output as "new context" for the next step.
+
+---
+
+![](img/q3_1.png){width="100%" fig-align="center"}
+
+Image Source: [Wei et al. (2022)](https://arxiv.org/abs/2201.11903)
+
+---
+
+## The Technical "Why": The LEGO Principle
+
+### 1. Logic Decomposition
+* Breaking massive problems into manageable "bricks".
+* Build the baseplate $\rightarrow$ Walls $\rightarrow$ Towers.
+
+---
+
+### 2. Externalizing Working Memory
+* Internal "mental energy" is limited.
+* Writing steps down acts as **External RAM**.
+* The model "reads" its own previous logic to inform the next token.
+
+---
+
+## The Technical "Why": Error Correction
+
+### 3. Catching the "Misplaced Brick"
+* In a Black Box, an error in layer 2 ruins the final result silently.
+* In CoT, errors have **locality**. 
+* The "physical" presence of an error in the text often nudges the model to self-correct before the final line.
+
+---
+
+## Variations of the CoT Pattern
+
+### 1. Zero-Shot CoT
+The "Magic" Phrase: **"Let’s think step by step."** No examples required.
+
+![](img/q3_2.png){width="100%" fig-align="center"}
+
+Image Source: [Kojima et al. (2022)](https://arxiv.org/abs/2205.11916)
+
+---
+
+## Variations of the CoT Pattern
+
+### 2. Few-Shot CoT
+Providing **Exemplars**. Showing the model 2-3 solved problems with worked-out logic.
+
+---
+
+## Variations of the CoT Pattern
+
+### 3. Self-Consistency
+The "Majority Vote." Generate 5 different paths; if 4 lead to "11" and 1 leads to "7", choose 11.
+
+---
+
+## Advantages & Trade-offs
+
+### The Benefits
+* **Transparency:** Essential for MedTech/Finance.
+* **Precision:** Stays "on track" during long generations.
+* **Education:** Teaches the user the methodology.
+
+---
+
+## Advantages & Trade-offs
+
+### The Costs
+* **Resource Overhead:** Higher token count = Higher cost.
+* **Latency:** "Thinking" takes time. Not ideal for real-time chat/weather.
+
+---
+
+## Conclusion: The Path Forward
+
+* **From Answer Machines to Reasoning Engines.**
+* CoT is the bridge between **superficial fluency** and **true logical depth**.
+* **Final Thought:** To trust the AI of the future, we must insist that it "shows its work."
+
+---
+
+## Thank you!
