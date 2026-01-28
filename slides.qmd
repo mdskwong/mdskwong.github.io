@@ -10,73 +10,70 @@ format:
     self-contained: true
 ---
 
+## Land Acknowledgement
+I would like to begin by acknowledging that we are on the traditional, ancestral, and unceded territory of the xʷməθkʷəy̓əm (Musqueam), Sḵwx̱wú7mesh (Squamish), and Tsleil-Waututh peoples. I am thankful to have the opportunity to live and learn on this land.
+
+---
+
 ## The "Black Box" Problem
 ### Why standard LLMs fail complex tasks
 
-* **The Search Engine Fallacy:** Early users treated LLMs like Google.
-* **The Logic Gap:** Models are great at facts, but struggle with multi-step reasoning.
-* **The "Hallucination" Shortcut:** * *Question:* 3 apples (\$2/ea) + \$10 cake. Change from \$20?
-    * *Black Box Answer:* "$8" (Model missed the multiplier).
-* **The Risk:** You get a destination with no map.
+* Early users treated LLMs like search engine.
+* Models are great at facts, but struggle with multi-step reasoning.
+* Models return a wrong answer without reasoning
+    * Question: 3 apples (\$2/ea) + \$10 cake. What is change from \$20?
+    * Black Box Answer: "\$8"
 
 ---
 
 ## What is Chain-of-Thought (CoT)?
 
-> "A technique where we ask an AI model to explain its reasoning before giving the answer."
-
-### The Core Shift:
-* Unfolding the "thought process" in natural language.
-* Shifting from **Result-Oriented** to **Process-Oriented** interaction.
+* A technique where we ask an AI model to explain its reasoning before giving the answer.
+* Instead of jumping to conclusions, the model unfolds its “thought process”.
 
 ---
 
-## A Comparative Example
+## Example
 
-**The Puzzle:** Roger has 5 balls. He buys 2 cans (3 balls each). Total?
+**Question:** Roger has 5 balls. He buys 2 cans (3 balls each). Total?
 
 | Standard Prompting | Chain-of-Thought Prompting |
 | :--- | :--- |
-| **Output:** "7" | **Step 1:** 5 balls + (2 cans × 3) = 6 balls. |
-| **Result:** Incorrect | **Step 2:** 5 + 6 = 11. |
+| **Output:** "7" | **Step 1:** 5 balls. |
+| **Result:** Incorrect | **Step 2:** (2 cans × 3) = 6 balls more. |
+| | **Step 3:** 5 + 6 = 11. |
 | | **Answer:** 11 (Correct) |
 
 **Why?** The model uses its own output as "new context" for the next step.
 
 ---
 
-![](img/q3_1.png){width="100%" fig-align="center"}
-
-Image Source: [Wei et al. (2022)](https://arxiv.org/abs/2201.11903)
-
----
-
-## The Technical "Why": The LEGO Principle
-
+## The LEGO Principle
 ### 1. Logic Decomposition
-* Breaking massive problems into manageable "bricks".
+* LEGO castle
+* Massive problems into smaller and manageable "blocks".
 * Build the baseplate $\rightarrow$ Walls $\rightarrow$ Towers.
 
----
-
-### 2. Externalizing Working Memory
-* Internal "mental energy" is limited.
-* Writing steps down acts as **External RAM**.
-* The model "reads" its own previous logic to inform the next token.
+![](img/lego_1.jpg){width="100%" fig-align="center"}
 
 ---
 
-## The Technical "Why": Error Correction
+### 2. External Memory
+* Write down a reasoning step, like placing a LEGO brick firmly into the baseplate.
+* Once that brick is placed, the model can "see" it.
 
-### 3. Catching the "Misplaced Brick"
-* In a Black Box, an error in layer 2 ruins the final result silently.
-* In CoT, errors have **locality**. 
-* The "physical" presence of an error in the text often nudges the model to self-correct before the final line.
+![](img/lego_2.jpg){width="100%" fig-align="center"}
+
+---
+
+### 3. Error Catching
+* Put a 2x4 brick where a 2x2 brick should be, you will notice immediately.
+
+![](img/lego_3.jpg){width="100%" fig-align="center"}
 
 ---
 
 ## Variations of the CoT Pattern
-
 ### 1. Zero-Shot CoT
 The "Magic" Phrase: **"Let’s think step by step."** No examples required.
 
@@ -87,41 +84,42 @@ Image Source: [Kojima et al. (2022)](https://arxiv.org/abs/2205.11916)
 ---
 
 ## Variations of the CoT Pattern
-
 ### 2. Few-Shot CoT
 Providing **Exemplars**. Showing the model 2-3 solved problems with worked-out logic.
+
+![](img/q3_2.png){width="100%" fig-align="center"}
+
+Image Source: [Kojima et al. (2022)](https://arxiv.org/abs/2205.11916)
 
 ---
 
 ## Variations of the CoT Pattern
-
 ### 3. Self-Consistency
 The "Majority Vote." Generate 5 different paths; if 4 lead to "11" and 1 leads to "7", choose 11.
 
+![](img/cot_3.png){width="100%" fig-align="center"}
+
+Image Source: [Wang et al., 2022](https://arxiv.org/abs/2203.11171)
+
 ---
 
 ## Advantages & Trade-offs
-
 ### The Benefits
-* **Transparency:** Essential for MedTech/Finance.
+* **Transparency:** Essential for Medical Diagnosis and Finance.
 * **Precision:** Stays "on track" during long generations.
-* **Education:** Teaches the user the methodology.
 
 ---
-
-## Advantages & Trade-offs
 
 ### The Costs
 * **Resource Overhead:** Higher token count = Higher cost.
-* **Latency:** "Thinking" takes time. Not ideal for real-time chat/weather.
+* **Latency:** "Thinking" takes time. Not ideal for real-time.
 
 ---
 
-## Conclusion: The Path Forward
-
-* **From Answer Machines to Reasoning Engines.**
-* CoT is the bridge between **superficial fluency** and **true logical depth**.
-* **Final Thought:** To trust the AI of the future, we must insist that it "shows its work."
+## Conclusion:
+* From Answer Machines to Reasoning Engines.
+* Future models not only more accurate but also more transparent and reliable.
+* Many modern LLMs adopt this technique.
 
 ---
 
