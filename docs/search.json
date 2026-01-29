@@ -68,5 +68,82 @@
     "title": "About",
     "section": "",
     "text": "Teem, a Computer Science graduate with experience in IT support, system administration, and data analysis. My career goal is to leverage data-driven approaches to solve complex challenges and facilitate decision-making processes."
+  },
+  {
+    "objectID": "slides.html#land-acknowledgement",
+    "href": "slides.html#land-acknowledgement",
+    "title": "Breaking the Black Box",
+    "section": "Land Acknowledgement",
+    "text": "Land Acknowledgement\nI would like to begin by acknowledging that we are on the traditional, ancestral, and unceded territory of the xʷməθkʷəy̓əm (Musqueam), Sḵwx̱wú7mesh (Squamish), and Tsleil-Waututh peoples. I am thankful to have the opportunity to live and learn on this land."
+  },
+  {
+    "objectID": "slides.html#the-black-box-problem",
+    "href": "slides.html#the-black-box-problem",
+    "title": "Breaking the Black Box",
+    "section": "The “Black Box” Problem",
+    "text": "The “Black Box” Problem\nWhy standard LLMs fail complex tasks\n\nEarly users treated LLMs like search engine.\nModels are great at facts, but struggle with multi-step reasoning.\nModels return a wrong answer without reasoning."
+  },
+  {
+    "objectID": "slides.html#what-is-chain-of-thought-cot",
+    "href": "slides.html#what-is-chain-of-thought-cot",
+    "title": "Breaking the Black Box",
+    "section": "What is Chain-of-Thought (CoT)?",
+    "text": "What is Chain-of-Thought (CoT)?\n\nA technique where we ask an AI model to explain its reasoning before giving the answer.\nInstead of jumping to conclusions, the model unfolds its “thought process”."
+  },
+  {
+    "objectID": "slides.html#example",
+    "href": "slides.html#example",
+    "title": "Breaking the Black Box",
+    "section": "Example",
+    "text": "Example\nQuestion: Roger has 5 balls. He buys 2 cans (3 balls each). Total?\n\n\n\nStandard Prompting\nChain-of-Thought Prompting\n\n\n\n\nOutput: “7”\nStep 1: 5 balls.\n\n\nResult: Incorrect\nStep 2: (2 cans × 3) = 6 balls more.\n\n\n\nStep 3: 5 + 6 = 11.\n\n\n\nAnswer: 11 (Correct)\n\n\n\nWhy? The model uses its own output as “new context” for the next step."
+  },
+  {
+    "objectID": "slides.html#the-lego-principle",
+    "href": "slides.html#the-lego-principle",
+    "title": "Breaking the Black Box",
+    "section": "The LEGO Principle",
+    "text": "The LEGO Principle\n1. Logic Decomposition\n\nLEGO castle\nMassive problems into smaller and manageable “blocks”.\nBuild the baseplate \\(\\rightarrow\\) Walls \\(\\rightarrow\\) Towers."
+  },
+  {
+    "objectID": "slides.html#variations-of-the-cot-pattern",
+    "href": "slides.html#variations-of-the-cot-pattern",
+    "title": "Breaking the Black Box",
+    "section": "Variations of the CoT Pattern",
+    "text": "Variations of the CoT Pattern\n1. Zero-Shot CoT\nThe “Magic” Phrase: “Let’s think step by step.” No examples required.\n\nImage Source: Kojima et al. (2022)"
+  },
+  {
+    "objectID": "slides.html#variations-of-the-cot-pattern-1",
+    "href": "slides.html#variations-of-the-cot-pattern-1",
+    "title": "Breaking the Black Box",
+    "section": "Variations of the CoT Pattern",
+    "text": "Variations of the CoT Pattern\n2. Few-Shot CoT\nProviding Exemplars. Showing the model 2-3 solved problems with worked-out logic.\n\nImage Source: Kojima et al. (2022)"
+  },
+  {
+    "objectID": "slides.html#variations-of-the-cot-pattern-2",
+    "href": "slides.html#variations-of-the-cot-pattern-2",
+    "title": "Breaking the Black Box",
+    "section": "Variations of the CoT Pattern",
+    "text": "Variations of the CoT Pattern\n3. Self-Consistency\nThe “Majority Vote.” Generate 5 different paths; if 4 lead to “11” and 1 leads to “7”, choose 11.\n\nImage Source: Wang et al., 2022"
+  },
+  {
+    "objectID": "slides.html#advantages-trade-offs",
+    "href": "slides.html#advantages-trade-offs",
+    "title": "Breaking the Black Box",
+    "section": "Advantages & Trade-offs",
+    "text": "Advantages & Trade-offs\nThe Benefits\n\nTransparency: Essential for Medical Diagnosis and Financial Decisions.\nPrecision: Stays “on track” during long generations."
+  },
+  {
+    "objectID": "slides.html#conclusion",
+    "href": "slides.html#conclusion",
+    "title": "Breaking the Black Box",
+    "section": "Conclusion:",
+    "text": "Conclusion:\n\nFrom Answer Machines to Reasoning Engines.\nMany modern LLMs adopt this technique."
+  },
+  {
+    "objectID": "slides.html#thank-you",
+    "href": "slides.html#thank-you",
+    "title": "Breaking the Black Box",
+    "section": "Thank you!",
+    "text": "Thank you!\nReferences:\n\nKojima, T., Gu, S. S., Reid, M., Matsuo, Y., & Iwasawa, Y. (2022). Large language models are zero-shot reasoners. arXiv preprint arXiv:2205.11916\nWang, X., Wei, J., Schuurmans, D., Le, Q., Chi, E., Narang, S., Chowdhery, A., & Zhou, D. (2022). Self-consistency improves chain of thought reasoning in language models. arXiv preprint arXiv:2203.11171\nWei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., Chi, E. H., Le, Q. V., & Zhou, D. (2022). Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. arXiv preprint arXiv:2201.11903.\nChain-of-Thought (CoT) Prompting. (n.d.). Prompting Guide. Retrieved January 7, 2026, from https://www.promptingguide.ai/techniques/cot/"
   }
 ]
