@@ -20,9 +20,7 @@ I would like to begin by acknowledging that we are on the traditional, ancestral
 
 * Early users treated LLMs like search engine.
 * Models are great at facts, but struggle with multi-step reasoning.
-* Models return a wrong answer without reasoning
-    * Question: 3 apples (\$2/ea) + \$10 cake. What is change from \$20?
-    * Black Box Answer: "\$8"
+* Models return a wrong answer without reasoning.
 
 ---
 
@@ -105,8 +103,11 @@ Image Source: [Wang et al., 2022](https://arxiv.org/abs/2203.11171)
 
 ## Advantages & Trade-offs
 ### The Benefits
-* **Transparency:** Essential for Medical Diagnosis and Finance.
+* **Transparency:** Essential for Medical Diagnosis and Financial Decisions.
 * **Precision:** Stays "on track" during long generations.
+
+![](img/pro_1.jpg){width="40%" fig-align="center"}
+![](img/pro_2.jpg){width="50%" fig-align="center"}
 
 ---
 
@@ -114,13 +115,24 @@ Image Source: [Wang et al., 2022](https://arxiv.org/abs/2203.11171)
 * **Resource Overhead:** Higher token count = Higher cost.
 * **Latency:** "Thinking" takes time. Not ideal for real-time.
 
+![](img/cons_1.jpg){width="50%" fig-align="center"}
+![](img/cons_2.png){width="30%" fig-align="center"}
+
 ---
 
 ## Conclusion:
 * From Answer Machines to Reasoning Engines.
-* Future models not only more accurate but also more transparent and reliable.
 * Many modern LLMs adopt this technique.
+
+![](img/llm_1.png){width="20%" fig-align="center"}
+![](img/llm_2.png){width="30%" fig-align="center"}
+![](img/llm_3.png){width="20%" fig-align="center"}
 
 ---
 
-## Thank you!
+## Thank you! {.smaller}
+### References:
+* Kojima, T., Gu, S. S., Reid, M., Matsuo, Y., & Iwasawa, Y. (2022). [Large language models are zero-shot reasoners](https://doi.org/10.48550/arXiv.2205.11916). *arXiv preprint arXiv:2205.11916*
+* Wang, X., Wei, J., Schuurmans, D., Le, Q., Chi, E., Narang, S., Chowdhery, A., & Zhou, D. (2022). [Self-consistency improves chain of thought reasoning in language models.](https://arxiv.org/abs/2203.11171) *arXiv preprint arXiv:2203.11171*
+* Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., Chi, E. H., Le, Q. V., & Zhou, D. (2022). [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903). *arXiv preprint arXiv:2201.11903*.
+* Chain-of-Thought (CoT) Prompting. (n.d.). *Prompting Guide*. Retrieved January 7, 2026, from <https://www.promptingguide.ai/techniques/cot/>
